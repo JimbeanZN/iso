@@ -4,6 +4,7 @@ using Iso.StatelessApi.Models;
 
 namespace Iso.StatelessApi.Data
 {
+	/// <inheritdoc />
 	public class Countries : IEnumerable<IsoCountry>
 	{
 		private static readonly List<IsoCountry> DataSet = new List<IsoCountry>
@@ -257,6 +258,13 @@ namespace Iso.StatelessApi.Data
 			new IsoCountry("Zimbabwe", "ZW", "ZWE", "716")
 		};
 
+		/// <inheritdoc />
+		/// <summary>
+		/// Returns an enumerator that iterates through the collection.
+		/// </summary>
+		/// <returns>
+		/// An enumerator that can be used to iterate through the collection.
+		/// </returns>
 		public IEnumerator<IsoCountry> GetEnumerator()
 		{
 			return DataSet.GetEnumerator();

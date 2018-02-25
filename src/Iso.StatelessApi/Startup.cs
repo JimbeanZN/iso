@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using Iso.StatelessApi.Data;
 using Iso.StatelessApi.Models;
 using Microsoft.AspNetCore.Builder;
@@ -31,7 +33,22 @@ namespace Iso.StatelessApi
 				options.SerializerSettings.Formatting = Formatting.Indented;
 			});
 
-			services.AddSwaggerGen(c => { c.SwaggerDoc(Version, new Info {Title = Title, Version = Version}); });
+			services.AddSwaggerGen(c =>
+			{
+				c.SwaggerDoc(Version, new Info
+				{
+					Version = Version,
+					Title = Title,
+					Description = "A simple example ASP.NET Core Web API",
+					TermsOfService = "None",
+					Contact = new Contact { Name = "Shayne Boyer", Email = "", Url = "https://twitter.com/spboyer" },
+					License = new License { Name = "Use under LICX", Url = "https://example.com/license" }
+				});
+
+				var basePath = AppContext.BaseDirectory;
+				var xmlPath = Path.Combine(basePath, "Iso.StatelessApi.xml");
+				c.IncludeXmlComments(xmlPath);
+			});
 		}
 		
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -45,7 +62,7 @@ namespace Iso.StatelessApi
 			app.UseSwaggerUI(c =>
 			{
 				c.RoutePrefix = "api-docs";
-				c.SwaggerEndpoint("/swagger/v1/swagger.json", $"{Title} {Version.ToUpper()}");
+				c.SwaggerEndpoint($"/swagger/{Version}/swagger.json", $"{Title} {Version.ToUpper()}");
 			});
 
 			app.UseMvc();
