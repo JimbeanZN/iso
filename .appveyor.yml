@@ -1,0 +1,46 @@
+version: 1.0.0.{build}
+configuration: Release
+
+image: Visual Studio 2017
+
+pull_requests:
+  do_not_increment_build_number: true
+  
+nuget:
+  disable_publish_on_pr: true
+
+branches:
+  only:
+  - master
+  
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+
+before_build:
+  - dotnet --version
+  - dotnet restore ./src/Iso.sln --verbosity m
+
+# build_script:
+  # - dotnet publish ./src/HulkOut/HulkOut.csproj
+
+# test_script:
+    # - OpenCover.Console.exe -register:user -oldstyle -hideskipped:filter -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test ./src/HulkOut.Tests/HulkOut.Tests.csproj"  -filter:"+[HulkOut*]* -[*.Tests]*" -output:"HulkOut_Coverage.xml"
+
+# after_test:
+    # - codecov -f "HulkOut_Coverage.xml"
+
+# artifacts:
+    # - path: HulkOut_Coverage.xml
+    # - path: ./src/**/*.nupkg
+      # name: NuGet
+      
+# deploy:
+# - provider: NuGet
+  # api_key:
+    # secure: lld6UevgXTI5VI+sBHWSSX0EwBWdARvTdBOO65NiPYB9uqi49SCm2vZtUta+X8Ya
