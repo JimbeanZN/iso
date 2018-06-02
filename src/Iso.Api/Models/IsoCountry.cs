@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Iso.StatelessApi.Models
+namespace Iso.Api.Models
 {
 	public class IsoCountry
 	{

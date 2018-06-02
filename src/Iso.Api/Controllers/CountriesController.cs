@@ -1,11 +1,11 @@
-﻿using Iso.StatelessApi.Models;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using Iso.Api.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Iso.StatelessApi.Controllers
+namespace Iso.Api.Controllers
 {
 	/// <inheritdoc />
 	[Route("api/countries")]
@@ -53,7 +53,7 @@ namespace Iso.StatelessApi.Controllers
 		/// </summary>
 		/// <param name="alpha2Code">The Alpha-2 code.</param>
 		/// <returns></returns>
-		[HttpGet("fromAlpha2Code/{alpha2Code}")]
+		[HttpGet("fromAlpha2Code/{alpha2Code:regex((?i)[[A-Z]]{{2}})}")]
 		[ProducesResponseType(typeof(IsoCountry), (int)HttpStatusCode.OK)]
 		[ProducesResponseType((int)HttpStatusCode.NotFound)]
 		public IActionResult GetFromAlpha2Code(string alpha2Code)
@@ -70,7 +70,7 @@ namespace Iso.StatelessApi.Controllers
 		/// </summary>
 		/// <param name="alpha3Code">The Alpha-3 code.</param>
 		/// <returns></returns>
-		[HttpGet("fromAlpha3Code/{alpha3Code}")]
+		[HttpGet("fromAlpha3Code/{alpha3Code:regex((?i)[[A-Z]]{{3}})}")]
 		[ProducesResponseType(typeof(IsoCountry), (int)HttpStatusCode.OK)]
 		[ProducesResponseType((int)HttpStatusCode.NotFound)]
 		public IActionResult GetFromAlpha3Code(string alpha3Code)
@@ -86,7 +86,7 @@ namespace Iso.StatelessApi.Controllers
 		/// </summary>
 		/// <param name="numericCode">The Numeric code.</param>
 		/// <returns></returns>
-		[HttpGet("fromNumericCode/{numericCode}")]
+		[HttpGet("fromNumericCode/{numericCode:regex([[0-9]]{{3}})}")]
 		[ProducesResponseType(typeof(IsoCountry), (int)HttpStatusCode.OK)]
 		[ProducesResponseType((int)HttpStatusCode.NotFound)]
 		public IActionResult GetFromNumericCode(string numericCode)

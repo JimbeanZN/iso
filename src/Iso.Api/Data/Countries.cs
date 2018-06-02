@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Iso.StatelessApi.Models;
+using Iso.Api.Models;
 
-namespace Iso.StatelessApi.Data
+namespace Iso.Api.Data
 {
 	/// <inheritdoc />
 	public class Countries : IEnumerable<IsoCountry>
