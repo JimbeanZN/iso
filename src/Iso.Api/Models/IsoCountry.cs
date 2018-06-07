@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Iso.Api.DataAnnotations;
 
 namespace Iso.Api.Models
 {
@@ -14,16 +15,13 @@ namespace Iso.Api.Models
 
 		public string CountryName { get; }
 
-		[MaxLength(2)]
-		[MinLength(2)]
+		[AbsoluteLength(2)]
 		public string IsoAlpha2Code { get; }
 
-		[MaxLength(3)]
-		[MinLength(3)]
+		[AbsoluteLength(3)]
 		public string IsoAlpha3Code { get; }
 
-		[MaxLength(3)]
-		[MinLength(3)]
+		[AbsoluteLength(3)]
 		public string IsoNumericCode { get; }
 	}
 }

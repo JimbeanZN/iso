@@ -13,16 +13,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <Content Include="Data\countries.csv" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="7.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>
