@@ -15,13 +15,19 @@ namespace Iso.Api.Filters
 	{
 		public void Apply(Operation operation, OperationFilterContext context)
 		{
+			operation.Responses.Add(((int)HttpStatusCode.InternalServerError).ToString(), new Response { Description = "Internal Server Error" });
+
 			var httpGetAttributes = context.ApiDescription
 				.ControllerAttributes()
 				.Union(context.ApiDescription.ActionAttributes())
 				.OfType<HttpGetAttribute>();
 
-			if (httpGetAttributes.Any())
-				operation.Responses.Add(((int)HttpStatusCode.NotFound).ToString(), new Response { Description = "Not Found" });
+			if (!httpGetAttributes.Any())
+			{
+				return;
+			}
+
+			operation.Responses.Add(((int) HttpStatusCode.NotFound).ToString(), new Response { Description = "Not Found" });
 		}
 	}
 }

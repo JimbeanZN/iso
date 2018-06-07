@@ -1,26 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using Iso.Api.Models;
+using Iso.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Iso.Api.Controllers
 {
-	/// <inheritdoc />
 	[Route("api/currencies")]
 	[Produces("application/json")]
 	public class CurrenciesController : Controller
 	{
-		private readonly IEnumerable<IsoCurrency> _currencies;
+		private readonly ICurrenciesService _currenciesService;
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="currencies"></param>
-		public CurrenciesController(IEnumerable<IsoCurrency> currencies)
+		public CurrenciesController(ICurrenciesService currenciesService)
 		{
-			_currencies = currencies;
+			_currenciesService = currenciesService;
 		}
 
 		/// <summary>
@@ -29,9 +25,9 @@ namespace Iso.Api.Controllers
 		/// <returns></returns>
 		[HttpGet]
 		[ProducesResponseType(typeof(IEnumerable<IsoCurrency>), (int)HttpStatusCode.OK)]
-		public IActionResult Get()
+		public async Task<IActionResult> Get()
 		{
-			return new OkObjectResult(_currencies.ToList());
+			return await _currenciesService.GetAsync();
 		}
 
 		/// <summary>
@@ -41,13 +37,9 @@ namespace Iso.Api.Controllers
 		/// <returns></returns>
 		[HttpGet("{alpha3Code:regex((?i)[[A-Z]]{{3}})}")]
 		[ProducesResponseType(typeof(IsoCurrency), (int)HttpStatusCode.OK)]
-		public IActionResult GetFromAlpha3Code(string alpha3Code)
+		public async Task<IActionResult> GetFromAlpha3Code(string alpha3Code)
 		{
-			var result = _currencies.FirstOrDefault(country =>
-				string.Equals(country.IsoAlpha3Code, alpha3Code, StringComparison.OrdinalIgnoreCase));
-
-			return result != null ? (IActionResult)new OkObjectResult(result) : new NotFoundResult();
-
+			return await _currenciesService.GetFromAlpha3CodeAsync(alpha3Code);
 		}
 
 		/// <summary>
@@ -57,12 +49,21 @@ namespace Iso.Api.Controllers
 		/// <returns></returns>
 		[HttpGet("{numericCode:regex([[0-9]]{{3}})}")]
 		[ProducesResponseType(typeof(IsoCurrency), (int)HttpStatusCode.OK)]
-		public IActionResult GetFromNumericCode(string numericCode)
+		public async Task<IActionResult> GetFromNumericCode(string numericCode)
 		{
-			var result = _currencies.FirstOrDefault(country =>
-				string.Equals(country.IsoNumericCode, numericCode, StringComparison.OrdinalIgnoreCase));
+			return await _currenciesService.GetFromNumericCodeAsync(numericCode);
+		}
 
-			return result != null ? (IActionResult)new OkObjectResult(result) : new NotFoundResult();
+		/// <summary>
+		/// Gets a list ISO Countries for the given ISO Currency.
+		/// </summary>
+		/// <param name="alpha3Code">The Alpha-3 code.</param>
+		/// <returns></returns>
+		[HttpGet("{alpha3Code:regex((?i)[[A-Z]]{{3}})}/currencies")]
+		[ProducesResponseType(typeof(IEnumerable<IsoCountry>), (int)HttpStatusCode.OK)]
+		public async Task<IActionResult> GetCurrencies(string alpha3Code)
+		{
+			return await _currenciesService.GetCountriesAsync(alpha3Code);
 		}
 	}
 }

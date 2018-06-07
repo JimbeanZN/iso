@@ -4,6 +4,7 @@ using System.IO;
 using Iso.Api.Entities;
 using Iso.Api.Filters;
 using Iso.Api.Models;
+using Iso.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -27,11 +28,14 @@ namespace Iso.Api
 
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddSingleton<IEnumerable<IsoCountry>, Countries>();
-			services.AddSingleton<IEnumerable<IsoCurrency>, Currencies>();
+			ConfigureSwagger(services);
+			ConfigureIoC(services);
 
 			services.AddMvc().AddJsonOptions(options => { options.SerializerSettings.Formatting = Formatting.Indented; });
+		}
 
+		private static void ConfigureSwagger(IServiceCollection services)
+		{
 			services.AddSwaggerGen(c =>
 			{
 				c.SwaggerDoc(Version, new Info
@@ -51,6 +55,15 @@ namespace Iso.Api
 
 				c.OperationFilter<RestResponsesOperationFilter>();
 			});
+		}
+
+		private static void ConfigureIoC(IServiceCollection services)
+		{
+			services.AddSingleton<IEnumerable<IsoCountry>, Countries>();
+			services.AddSingleton<IEnumerable<IsoCurrency>, Currencies>();
+
+			services.AddTransient<ICountriesService, CountriesService>();
+			services.AddTransient<ICurrenciesService, CurrenciesService>();
 		}
 
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
