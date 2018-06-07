@@ -5,7 +5,8 @@ namespace Iso.Api.Models
 {
 	public class IsoCurrency
 	{
-		public IsoCurrency(string currencyName, string isoAlpha3Code, string isoNumericCode, int isoExponent, IEnumerable<string> countries)
+		public IsoCurrency(string currencyName, string isoAlpha3Code, string isoNumericCode, int isoExponent,
+			IEnumerable<string> countries)
 		{
 			CurrencyName = currencyName;
 			IsoAlpha3Code = isoAlpha3Code;
@@ -32,7 +33,7 @@ namespace Iso.Api.Models
 		public string CurrencyName { get; set; }
 
 		[AbsoluteLength(3)]
-		public string IsoAlpha3Code { get; set;  }
+		public string IsoAlpha3Code { get; set; }
 
 		[AbsoluteLength(3)]
 		public string IsoNumericCode { get; set; }

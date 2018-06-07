@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -15,7 +11,8 @@ namespace Iso.Api.Filters
 	{
 		public void Apply(Operation operation, OperationFilterContext context)
 		{
-			operation.Responses.Add(((int)HttpStatusCode.InternalServerError).ToString(), new Response { Description = "Internal Server Error" });
+			operation.Responses.Add(((int) HttpStatusCode.InternalServerError).ToString(),
+				new Response {Description = "Internal Server Error"});
 
 			var httpGetAttributes = context.ApiDescription
 				.ControllerAttributes()
@@ -27,7 +24,7 @@ namespace Iso.Api.Filters
 				return;
 			}
 
-			operation.Responses.Add(((int) HttpStatusCode.NotFound).ToString(), new Response { Description = "Not Found" });
+			operation.Responses.Add(((int) HttpStatusCode.NotFound).ToString(), new Response {Description = "Not Found"});
 		}
 	}
 }

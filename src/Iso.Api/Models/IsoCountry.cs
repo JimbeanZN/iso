@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Iso.Api.DataAnnotations;
+﻿using Iso.Api.DataAnnotations;
 
 namespace Iso.Api.Models
 {

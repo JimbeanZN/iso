@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Iso.Api.DataAnnotations
 {
 	/// <summary>
-	/// Specifies the absolute length of array/string data allowed in a property.
+	///   Specifies the absolute length of array/string data allowed in a property.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 	public class AbsoluteLengthAttribute : ValidationAttribute
@@ -13,41 +13,44 @@ namespace Iso.Api.DataAnnotations
 		private const int AbsoluteAllowableLength = -1;
 
 		/// <summary>
-		/// Gets the absolute allowable length of the array/string data.
-		/// </summary>
-		public int Length { get; }
-		
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:Iso.Api.DataAnnotations.AbsoluteLengthAttribute" /> class.
+		///   Initializes a new instance of the <see cref="T:Iso.Api.DataAnnotations.AbsoluteLengthAttribute" /> class.
 		/// </summary>
 		/// <param name="length">
-		/// The absolute allowable length of array/string data.
-		/// Value must be greater than zero.
+		///   The absolute allowable length of array/string data.
+		///   Value must be greater than zero.
 		/// </param>
 		public AbsoluteLengthAttribute(int length)
-				: base(() => DefaultErrorMessageString)
+			: base(() => DefaultErrorMessageString)
 		{
 			Length = length;
 		}
-		
+
 		/// <summary>
-		/// Initializes a new instance of the <see cref="T:Iso.Api.DataAnnotations.AbsoluteLengthAttribute" /> class.
-		/// The absolute allowable length supported by the database will be used.
+		///   Initializes a new instance of the <see cref="T:Iso.Api.DataAnnotations.AbsoluteLengthAttribute" /> class.
+		///   The absolute allowable length supported by the database will be used.
 		/// </summary>
 		public AbsoluteLengthAttribute()
-				: base(() => DefaultErrorMessageString)
+			: base(() => DefaultErrorMessageString)
 		{
 			Length = AbsoluteAllowableLength;
 		}
 
-		private static string DefaultErrorMessageString => "The field {0} must be a string or array type with an absolute length of '{1}'.";
+		/// <summary>
+		///   Gets the absolute allowable length of the array/string data.
+		/// </summary>
+		public int Length { get; }
+
+		private static string DefaultErrorMessageString =>
+			"The field {0} must be a string or array type with an absolute length of '{1}'.";
 
 		/// <summary>
-		/// Determines whether a specified object is valid. (Overrides <see cref="M:System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid(System.Object)" />)
+		///   Determines whether a specified object is valid. (Overrides
+		///   <see cref="M:System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid(System.Object)" />)
 		/// </summary>
 		/// <remarks>
-		/// This method returns <c>true</c> if the <paramref name="value" /> is null.  
-		/// It is assumed the <see cref="T:System.ComponentModel.DataAnnotations.RequiredAttribute" /> is used if the value may not be null.
+		///   This method returns <c>true</c> if the <paramref name="value" /> is null.
+		///   It is assumed the <see cref="T:System.ComponentModel.DataAnnotations.RequiredAttribute" /> is used if the value may
+		///   not be null.
 		/// </remarks>
 		/// <param name="value">The object to validate.</param>
 		/// <returns><c>true</c> if the value is null or equal to the specified absolute length, otherwise <c>false</c></returns>
@@ -65,13 +68,14 @@ namespace Iso.Api.DataAnnotations
 			}
 
 			var str = value as string;
-			length = str?.Length ?? ((Array)value).Length;
+			length = str?.Length ?? ((Array) value).Length;
 
 			return AbsoluteAllowableLength == Length || length == Length;
 		}
-		
+
 		/// <summary>
-		/// Applies formatting to a specified error message. (Overrides <see cref="M:System.ComponentModel.DataAnnotations.ValidationAttribute.FormatErrorMessage(System.String)" />)
+		///   Applies formatting to a specified error message. (Overrides
+		///   <see cref="M:System.ComponentModel.DataAnnotations.ValidationAttribute.FormatErrorMessage(System.String)" />)
 		/// </summary>
 		/// <param name="name">The name to include in the formatted string.</param>
 		/// <returns>A localized string to describe the maximum acceptable length.</returns>
@@ -82,14 +86,15 @@ namespace Iso.Api.DataAnnotations
 		}
 
 		/// <summary>
-		/// Checks that Length has a legal value.
+		///   Checks that Length has a legal value.
 		/// </summary>
 		/// <exception cref="InvalidOperationException">Length is zero or less than negative one.</exception>
 		private void EnsureLegalLengths()
 		{
 			if (Length == 0 || Length < -1)
 			{
-				throw new InvalidOperationException(String.Format(CultureInfo.CurrentCulture, "AbsoluteLengthAttribute must have a Length value that is greater than zero. Use AbsoluteLength() without parameters to indicate that the string or array can have the absolute allowable length."));
+				throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture,
+					"AbsoluteLengthAttribute must have a Length value that is greater than zero. Use AbsoluteLength() without parameters to indicate that the string or array can have the absolute allowable length."));
 			}
 		}
 	}
