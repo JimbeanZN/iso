@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Iso.Api.Extensions;
 using Iso.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,6 +31,11 @@ namespace Iso.Api.Services.Currencies
 				throw new ArgumentNullException(nameof(alpha3Code));
 			}
 
+			if (!alpha3Code.IsValidAlpha3Code())
+			{
+				throw new ArgumentException(nameof(alpha3Code));
+			}
+
 			var result = _currencies.FirstOrDefault(country =>
 				string.Equals(country.IsoAlpha3Code, alpha3Code, StringComparison.OrdinalIgnoreCase));
 
@@ -43,6 +49,11 @@ namespace Iso.Api.Services.Currencies
 				throw new ArgumentNullException(nameof(numericCode));
 			}
 
+			if (!numericCode.IsValidNumericCode())
+			{
+				throw new ArgumentException(nameof(numericCode));
+			}
+
 			var result = _currencies.FirstOrDefault(country =>
 				string.Equals(country.IsoNumericCode, numericCode, StringComparison.OrdinalIgnoreCase));
 
@@ -54,6 +65,11 @@ namespace Iso.Api.Services.Currencies
 			if (string.IsNullOrWhiteSpace(alpha3Code))
 			{
 				throw new ArgumentNullException(nameof(alpha3Code));
+			}
+
+			if (!alpha3Code.IsValidAlpha3Code())
+			{
+				throw new ArgumentException(nameof(alpha3Code));
 			}
 
 			var currencyResult = _currencies.FirstOrDefault(currency =>

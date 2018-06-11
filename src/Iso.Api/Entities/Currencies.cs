@@ -31,12 +31,6 @@ namespace Iso.Api.Entities
 			}
 		}
 
-		/// <summary>
-		///   Returns an enumerator that iterates through the collection.
-		/// </summary>
-		/// <returns>
-		///   An enumerator that can be used to iterate through the collection.
-		/// </returns>
 		public IEnumerator<IsoCurrency> GetEnumerator()
 		{
 			return _dataSet.GetEnumerator();

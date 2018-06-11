@@ -13,7 +13,7 @@ namespace Iso.Api.Controllers
 	{
 		private readonly ICurrenciesService _currenciesService;
 
-		public CurrenciesController(ICurrenciesService currenciesService)
+		internal CurrenciesController(ICurrenciesService currenciesService)
 		{
 			_currenciesService = currenciesService;
 		}

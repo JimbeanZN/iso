@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Iso.Api.Entities;
+using Iso.Api.Extensions;
 using Iso.Api.Filters;
 using Iso.Api.Models;
 using Iso.Api.Services.Countries;
@@ -81,6 +82,7 @@ namespace Iso.Api
 				c.SwaggerEndpoint($"/swagger/{Version}/swagger.json", $"{Title} {Version.ToUpper()}");
 			});
 
+			app.UseResponseHeaders();
 			app.UseMvc();
 		}
 	}

@@ -28,7 +28,7 @@ namespace Iso.Api.Models
 		internal IEnumerable<string> Countries { get; }
 	}
 
-	public class ItermediaryIsoCurrency
+	internal class ItermediaryIsoCurrency
 	{
 		public string CurrencyName { get; set; }
 
