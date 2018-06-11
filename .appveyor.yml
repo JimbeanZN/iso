@@ -24,23 +24,11 @@ dotnet_csproj:
 
 before_build:
   - dotnet --version
-  - dotnet restore ./src/Iso.sln --verbosity m
+  - dotnet restore ./src/Iso.Api.sln --verbosity m
 
 build_script:
-  - dotnet publish ./src/Iso.StatelessApi/Iso.StatelessApi.csproj
-
-# test_script:
-    # - OpenCover.Console.exe -register:user -oldstyle -hideskipped:filter -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test ./src/HulkOut.Tests/HulkOut.Tests.csproj"  -filter:"+[HulkOut*]* -[*.Tests]*" -output:"HulkOut_Coverage.xml"
-
-# after_test:
-    # - codecov -f "HulkOut_Coverage.xml"
+  - dotnet publish ./src/Iso.Api/Iso.Api.csproj
 
 artifacts:
-    # - path: HulkOut_Coverage.xml
     - path: ./src/**/*.nupkg
       name: NuGet
-      
-# deploy:
-# - provider: NuGet
-  # api_key:
-    # secure: lld6UevgXTI5VI+sBHWSSX0EwBWdARvTdBOO65NiPYB9uqi49SCm2vZtUta+X8Ya
