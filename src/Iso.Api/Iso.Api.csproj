@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Doron Epstein</Authors>
     <RepositoryUrl>https://github.com/JimbeanZN/iso</RepositoryUrl>
     <Product>ISO Data API</Product>

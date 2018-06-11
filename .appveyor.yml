@@ -26,9 +26,12 @@ before_build:
     - dotnet --version
     
 build_script:
-    - dotnet build ./src/Iso.Api/Iso.Api.csproj --verbosity m
-    - dotnet publish ./src/Iso.Api/Iso.Api.csproj --verbosity m
+    - dotnet build ./src/Iso.Api/Iso.Api.csproj --verbosity m --configuration Release
+    - dotnet publish ./src/Iso.Api/Iso.Api.csproj --verbosity m --configuration Release
+    
+after_build:
+    7z a iso.zip %APPVEYOR_BUILD_FOLDER%\src\Iso.Api\bin\Release\netcoreapp2.1\publish\
 
 artifacts:
-    - path: ./src/**/*.nupkg
-      name: NuGet
+    - path: iso.zip
+      name: IsoPublished
