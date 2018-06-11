@@ -27,6 +27,7 @@ before_build:
   - dotnet restore ./src/Iso.Api.sln --verbosity m
 
 build_script:
+  - dotnet build ./src/Iso.Api/Iso.Api.csproj
   - dotnet publish ./src/Iso.Api/Iso.Api.csproj
 
 artifacts:
