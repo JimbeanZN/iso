@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Doron Epstein</Authors>
+    <RepositoryUrl>https://github.com/JimbeanZN/iso</RepositoryUrl>
+    <Product>ISO Data API</Product>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
