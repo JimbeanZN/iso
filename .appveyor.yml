@@ -43,4 +43,4 @@ deploy:
       username: $isodata
       password:
         secure: 1nkTq4LDACHVRjktkCBRP2HSlGswIi9IolYOnfouK2Q4wXr8SHo6ttMLmZfwfCyoNeELjmzWh0A6v0Ny9IJG2g==
-      artifact: %APPVEYOR_BUILD_FOLDER%\src\Iso.Api\bin\Release\netcoreapp2.1\win-x64\publish\
+      artifact: iso.zip
