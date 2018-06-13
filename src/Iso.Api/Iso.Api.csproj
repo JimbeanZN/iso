@@ -20,7 +20,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Data\countries.csv" />
+    <Content Include="Data\countries.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\currencies.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
