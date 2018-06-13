@@ -24,23 +24,18 @@ dotnet_csproj:
 
 before_build:
     - dotnet --version
+    - dotnet restore
 
 build_script:
-    - dotnet build ./src/Iso.Api/Iso.Api.csproj --verbosity m --configuration Release
     - dotnet publish ./src/Iso.Api/Iso.Api.csproj --verbosity m --configuration Release --self-contained --runtime win-x64
 
-after_build:
-    7z a iso.zip %APPVEYOR_BUILD_FOLDER%\src\Iso.Api\bin\Release\netcoreapp2.1\win-x64\publish\
-
 artifacts:
-    - path: iso.zip
+    - path: 'Iso.Api\bin\Release\netcoreapp2.1\win-x64\publish\'
       name: IsoPublished
+      type: WebDeployPackage
 
 deploy:
-    - provider: AzureAppServiceZipDeploy
-      appservice_environment: false
-      website: isodata
-      username: $isodata
-      password:
-        secure: 1nkTq4LDACHVRjktkCBRP2HSlGswIi9IolYOnfouK2Q4wXr8SHo6ttMLmZfwfCyoNeELjmzWh0A6v0Ny9IJG2g==
-      artifact: iso.zip
+    - provider: Environment
+      name: IsoProduction
+      on:
+        branch: master
