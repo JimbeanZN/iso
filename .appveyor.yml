@@ -35,3 +35,12 @@ after_build:
 artifacts:
     - path: iso.zip
       name: IsoPublished
+      
+deploy:
+    - provider: AzureAppServiceZipDeploy
+      appservice_environment: false
+      website: isodata
+      username: $isodata
+      password:
+        secure: pdCRnRIVi7pipafQp/0LfIqZGmF/0Y3iYTf3nBo+q3IHCm1ibhUSo27jOxnRcjNV7CkoJgJpTnkMN0lRrog/MA==
+      artifact: iso.zip
