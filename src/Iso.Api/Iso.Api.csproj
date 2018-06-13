@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-	<RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Doron Epstein</Authors>
     <RepositoryUrl>https://github.com/JimbeanZN/iso</RepositoryUrl>
