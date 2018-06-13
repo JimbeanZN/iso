@@ -44,7 +44,7 @@ namespace Iso.Api
 				{
 					Version = Version,
 					Title = Title,
-					Description = "A simple example ASP.NET Core Web API to expose ISO data",
+					Description = "A simple ASP.NET Core Web API to expose ISO data",
 					TermsOfService = "None"
 				});
 
