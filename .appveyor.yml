@@ -30,7 +30,7 @@ build_script:
     - dotnet publish ./src/Iso.Api/Iso.Api.csproj --verbosity m --configuration Release --self-contained --runtime win-x64
 
 artifacts:
-    - path: 'Iso.Api\bin\Release\netcoreapp2.1\win-x64\publish\'
+    - path: '.\src\Iso.Api\bin\Release\netcoreapp2.1\win-x64\publish\'
       name: IsoPublished
       type: WebDeployPackage
 
