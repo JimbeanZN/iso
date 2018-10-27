@@ -8,29 +8,29 @@ using Iso.Api.Models;
 
 namespace Iso.Api.Entities
 {
-	public class Countries : IEnumerable<IsoCountry>
-	{
-		private static List<IsoCountry> _dataSet;
+  public class Countries : IEnumerable<IsoCountry>
+  {
+    private static List<IsoCountry> _dataSet;
 
-		public Countries()
-		{
-			var fileStream = new FileStream(@"data\countries.csv", FileMode.Open, FileAccess.Read);
-			using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
-			{
-				var csv = new CsvReader(streamReader);
-				csv.Configuration.HasHeaderRecord = false;
-				_dataSet = csv.GetRecords<IsoCountry>().ToList();
-			}
-		}
+    public Countries()
+    {
+      var fileStream = new FileStream(@"data\countries.csv", FileMode.Open, FileAccess.Read);
+      using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+      {
+        var csv = new CsvReader(streamReader);
+        csv.Configuration.HasHeaderRecord = false;
+        _dataSet = csv.GetRecords<IsoCountry>().ToList();
+      }
+    }
 
-		public IEnumerator<IsoCountry> GetEnumerator()
-		{
-			return _dataSet.GetEnumerator();
-		}
+    public IEnumerator<IsoCountry> GetEnumerator()
+    {
+      return _dataSet.GetEnumerator();
+    }
 
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return GetEnumerator();
-		}
-	}
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+      return GetEnumerator();
+    }
+  }
 }
