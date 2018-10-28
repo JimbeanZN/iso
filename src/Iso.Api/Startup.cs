@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using Iso.Api.Entities;
 using Iso.Api.Extensions;
-using Iso.Api.Filters;
 using Iso.Api.Models;
 using Iso.Api.Services;
 using Microsoft.AspNetCore.Builder;
@@ -57,7 +56,8 @@ namespace Iso.Api
         c.DescribeAllEnumsAsStrings();
         c.DescribeStringEnumsInCamelCase();
 
-        c.OperationFilter<RestResponsesOperationFilter>();
+        c.OperationFilter<HulkOut.AspNetCore.Swashbuckle.Filters.InternalServerErrorResponseOperationFilter>();
+        c.OperationFilter<HulkOut.AspNetCore.Swashbuckle.Filters.GetResponseOperationFilter>();
       });
     }
 
