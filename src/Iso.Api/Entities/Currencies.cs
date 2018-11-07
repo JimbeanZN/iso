@@ -10,7 +10,7 @@ namespace Iso.Api.Entities
 {
   public class Currencies : IEnumerable<IsoCurrency>
   {
-    private static List<IsoCurrency> _dataSet;
+    private readonly List<IsoCurrency> _dataSet;
 
     public Currencies()
     {

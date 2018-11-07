@@ -34,7 +34,7 @@ namespace Iso.Api.Services
 
       var result = _countries.Where(country => currencyResult.Countries.Contains(country.Name));
 
-      return await Task.FromResult((IActionResult) new OkObjectResult(result));
+      return await Task.FromResult((IActionResult) new OkObjectResult(result)).ConfigureAwait(false);
     }
   }
 }

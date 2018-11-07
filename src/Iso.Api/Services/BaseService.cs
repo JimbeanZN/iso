@@ -34,7 +34,7 @@ namespace Iso.Api.Services
       var result = Data.FirstOrDefault(item =>
         string.Equals(item.IsoAlpha3Code, alpha3Code, StringComparison.OrdinalIgnoreCase));
 
-      return await Task.FromResult(result != null ? (IActionResult)new OkObjectResult(result) : new NotFoundResult());
+      return await Task.FromResult(result != null ? (IActionResult)new OkObjectResult(result) : new NotFoundResult()).ConfigureAwait(false);
     }
 
     public virtual async Task<IActionResult> GetFromNumericCodeAsync(string numericCode)
@@ -52,7 +52,7 @@ namespace Iso.Api.Services
       var result = Data.FirstOrDefault(item =>
         string.Equals(item.IsoNumericCode, numericCode, StringComparison.OrdinalIgnoreCase));
 
-      return await Task.FromResult(result != null ? (IActionResult) new OkObjectResult(result) : new NotFoundResult());
+      return await Task.FromResult(result != null ? (IActionResult) new OkObjectResult(result) : new NotFoundResult()).ConfigureAwait(false);
     }
 
     public abstract Task<IActionResult> GetRelatedEntities(string alpha3Code);

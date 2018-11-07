@@ -10,7 +10,7 @@ namespace Iso.Api.Entities
 {
   public class Countries : IEnumerable<IsoCountry>
   {
-    private static List<IsoCountry> _dataSet;
+    private readonly List<IsoCountry> _dataSet;
 
     public Countries()
     {
