@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using Iso.Api.Entities;
 using Iso.Api.Extensions;
@@ -70,7 +71,7 @@ namespace Iso.Api
       services.AddTransient<IBaseService<IsoCurrency>, CurrenciesService>();
     }
 
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+    public static void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
     {
       loggerFactory.AddApplicationInsights(app.ApplicationServices);
 
@@ -83,7 +84,7 @@ namespace Iso.Api
       app.UseSwaggerUI(c =>
       {
         c.RoutePrefix = "api-docs";
-        c.SwaggerEndpoint($"/swagger/{Version}/swagger.json", $"{Title} {Version.ToUpper()}");
+        c.SwaggerEndpoint($"/swagger/{Version}/swagger.json", $"{Title} {Version.ToUpper(CultureInfo.InvariantCulture)}");
       });
 
       app.UseResponseHeaders();
