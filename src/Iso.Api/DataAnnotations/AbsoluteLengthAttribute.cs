@@ -93,8 +93,8 @@ namespace Iso.Api.DataAnnotations
     {
       if (Length == 0 || Length < -1)
       {
-        throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture,
-          "AbsoluteLengthAttribute must have a Length value that is greater than zero. Use AbsoluteLength() without parameters to indicate that the string or array can have the absolute allowable length."));
+        throw new InvalidOperationException(
+          "AbsoluteLengthAttribute must have a Length value that is greater than zero. Use AbsoluteLength() without parameters to indicate that the string or array can have the absolute allowable length.");
       }
     }
   }
