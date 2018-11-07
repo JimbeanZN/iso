@@ -17,7 +17,7 @@ namespace Iso.Api.Services
     }
 
     public IEnumerable<T> Data { get; }
-    public virtual async Task<IActionResult> GetAsync() => await Task.FromResult(new OkObjectResult(Data.ToList()));
+    public virtual async Task<IActionResult> GetAsync() => await Task.FromResult(new OkObjectResult(Data.ToList())).ConfigureAwait(false);
 
     public virtual async Task<IActionResult> GetFromAlpha3CodeAsync(string alpha3Code)
     {
