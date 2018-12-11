@@ -57,8 +57,7 @@ namespace Iso.Api
         c.DescribeAllEnumsAsStrings();
         c.DescribeStringEnumsInCamelCase();
 
-        c.OperationFilter<HulkOut.AspNetCore.Swashbuckle.Filters.InternalServerErrorResponseOperationFilter>();
-        c.OperationFilter<HulkOut.AspNetCore.Swashbuckle.Filters.GetResponseOperationFilter>();
+        c.OperationFilter<HulkOut.AspNetCore.Swashbuckle.OperationFilters.Http.HttpAllResponsesOperationFilter>();
       });
     }
 
