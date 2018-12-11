@@ -14,12 +14,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netcoreapp2.1\Iso.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netcoreapp2.2\Iso.Api.xml</DocumentationFile>
 	<noWarn>1591</noWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netcoreapp2.1\Iso.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netcoreapp2.2\Iso.Api.xml</DocumentationFile>
 	<noWarn>1591</noWarn>
   </PropertyGroup>
 
