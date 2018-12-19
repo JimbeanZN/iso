@@ -11,6 +11,14 @@
     <ApplicationInsightsAnnotationResourceId>/subscriptions/c0ccfa50-a8a9-4ec9-810b-25a9f21e2527/resourcegroups/isodata-rg/providers/microsoft.insights/components/isodata-ai</ApplicationInsightsAnnotationResourceId>
     <LangVersion>latest</LangVersion>
     <UserSecretsId>20005244-61f1-4eca-aef0-7cabb9c0bcfe</UserSecretsId>
+		<Version Condition=" '$(BUILD_BUILDNUMBER)' == '' ">1.2.0.1-local</Version>
+    <Version Condition=" '$(BUILD_BUILDNUMBER)' != '' ">1.2.0.$(BUILD_BUILDNUMBER)</Version>
+		
+		<AssemblyVersion Condition=" '$(BUILD_BUILDNUMBER)' == '' ">1.2.0.1-local</AssemblyVersion>
+    <AssemblyVersion Condition=" '$(BUILD_BUILDNUMBER)' != '' ">1.2.0.$(BUILD_BUILDNUMBER)</AssemblyVersion>
+		
+		<FileVersion Condition=" '$(BUILD_BUILDNUMBER)' == '' ">1.2.0.1-local</FileVersion>
+    <FileVersion Condition=" '$(BUILD_BUILDNUMBER)' != '' ">1.2.0.$(BUILD_BUILDNUMBER)</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
