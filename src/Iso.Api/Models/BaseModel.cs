@@ -1,4 +1,4 @@
-﻿using Iso.Api.DataAnnotations;
+﻿using HulkOut.DataAnnotations;
 
 namespace Iso.Api.Models
 {
