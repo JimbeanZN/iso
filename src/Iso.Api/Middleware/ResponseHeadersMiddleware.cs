@@ -17,7 +17,7 @@ namespace Iso.Api.Middleware
     {
       context.Response.OnStarting(state =>
       {
-        context.Response.Headers.Add("X-Api-Version", Assembly.GetExecutingAssembly().GetName().Version.ToString());
+        context.Response.Headers.Add("X-Api-Version", Assembly.GetEntryAssembly().GetName().Version.ToString());
         return Task.FromResult(0);
       }, context);
 
