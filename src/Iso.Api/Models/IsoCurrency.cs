@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Iso.Api.DataAnnotations;
 
 namespace Iso.Api.Models
 {

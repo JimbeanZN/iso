@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using HulkOut.AspNetCore.Extensions;
+using HulkOut.AspNetCore.Swashbuckle.OperationFilters.Http;
 using Iso.Api.Entities;
 using Iso.Api.Extensions;
 using Iso.Api.Models;
@@ -57,7 +59,7 @@ namespace Iso.Api
         c.DescribeAllEnumsAsStrings();
         c.DescribeStringEnumsInCamelCase();
 
-        c.OperationFilter<HulkOut.AspNetCore.Swashbuckle.OperationFilters.Http.HttpAllResponsesOperationFilter>();
+        c.OperationFilter<HttpAllResponsesOperationFilter>();
       });
     }
 
@@ -86,7 +88,7 @@ namespace Iso.Api
         c.SwaggerEndpoint($"/swagger/{Version}/swagger.json", $"{Title} {Version.ToUpper(CultureInfo.InvariantCulture)}");
       });
 
-      app.UseResponseHeaders();
+      app.UseApiVersionResponse();
 
       app.UseDefaultFiles();
       app.UseStaticFiles();
