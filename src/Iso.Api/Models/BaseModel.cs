@@ -1,7 +1,9 @@
-﻿using HulkOut.DataAnnotations;
+﻿using System.Diagnostics.CodeAnalysis;
+using HulkOut.DataAnnotations;
 
 namespace Iso.Api.Models
 {
+  [ExcludeFromCodeCoverage]
   public abstract class BaseModel
   {
     protected BaseModel(string name, string isoAlpha3Code, string isoNumericCode)

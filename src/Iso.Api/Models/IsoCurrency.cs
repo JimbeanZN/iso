@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Iso.Api.Models
 {
+  [ExcludeFromCodeCoverage]
   public class IsoCurrency : BaseModel
   {
     public IsoCurrency(string name, string isoAlpha3Code, string isoNumericCode, int isoExponent,

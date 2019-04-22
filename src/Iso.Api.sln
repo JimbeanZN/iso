@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Iso.Api", "Iso.Api\Iso.Api.csproj", "{6058CD11-4A82-4C38-95EF-AC5B35649127}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iso.Api.Tests", "Iso.Api.Tests\Iso.Api.Tests.csproj", "{CA7A15F2-98FF-48FB-9F20-CBBFC96687D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6058CD11-4A82-4C38-95EF-AC5B35649127}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6058CD11-4A82-4C38-95EF-AC5B35649127}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6058CD11-4A82-4C38-95EF-AC5B35649127}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA7A15F2-98FF-48FB-9F20-CBBFC96687D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA7A15F2-98FF-48FB-9F20-CBBFC96687D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA7A15F2-98FF-48FB-9F20-CBBFC96687D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA7A15F2-98FF-48FB-9F20-CBBFC96687D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
