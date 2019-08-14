@@ -20,7 +20,8 @@ namespace Iso.Api.Models
 
   internal class ItermediaryIsoCurrency : BaseModel
   {
-    public ItermediaryIsoCurrency(string name, string isoAlpha3Code, string isoNumericCode, int isoExponent, string countryName) : 
+    public ItermediaryIsoCurrency(string name, string isoAlpha3Code, string isoNumericCode, int isoExponent,
+      string countryName) :
       base(name, isoAlpha3Code, isoNumericCode)
     {
       IsoExponent = isoExponent;

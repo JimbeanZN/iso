@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Iso.Api.Services
 {
   public abstract class BaseService<T> : IBaseService<T>
-    where T: BaseModel
+    where T : BaseModel
   {
     protected BaseService(IEnumerable<T> data)
     {
@@ -17,7 +17,11 @@ namespace Iso.Api.Services
     }
 
     public IEnumerable<T> Data { get; }
-    public virtual async Task<IActionResult> GetAsync() => await Task.FromResult(new OkObjectResult(Data.ToList())).ConfigureAwait(false);
+
+    public virtual async Task<IActionResult> GetAsync()
+    {
+      return await Task.FromResult(new OkObjectResult(Data.ToList()));
+    }
 
     public virtual async Task<IActionResult> GetFromAlpha3CodeAsync(string alpha3Code)
     {
@@ -34,7 +38,7 @@ namespace Iso.Api.Services
       var result = Data.FirstOrDefault(item =>
         string.Equals(item.IsoAlpha3Code, alpha3Code, StringComparison.OrdinalIgnoreCase));
 
-      return await Task.FromResult(result != null ? (IActionResult)new OkObjectResult(result) : new NotFoundResult()).ConfigureAwait(false);
+      return await Task.FromResult(result != null ? (IActionResult) new OkObjectResult(result) : new NotFoundResult());
     }
 
     public virtual async Task<IActionResult> GetFromNumericCodeAsync(string numericCode)
@@ -52,7 +56,7 @@ namespace Iso.Api.Services
       var result = Data.FirstOrDefault(item =>
         string.Equals(item.IsoNumericCode, numericCode, StringComparison.OrdinalIgnoreCase));
 
-      return await Task.FromResult(result != null ? (IActionResult) new OkObjectResult(result) : new NotFoundResult()).ConfigureAwait(false);
+      return await Task.FromResult(result != null ? (IActionResult) new OkObjectResult(result) : new NotFoundResult());
     }
 
     public abstract Task<IActionResult> GetRelatedEntities(string alpha3Code);

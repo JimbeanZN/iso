@@ -5,7 +5,6 @@ using System.IO;
 using HulkOut.AspNetCore.Extensions;
 using HulkOut.AspNetCore.Swashbuckle.OperationFilters.Http;
 using Iso.Api.Entities;
-using Iso.Api.Extensions;
 using Iso.Api.Models;
 using Iso.Api.Services;
 using Microsoft.AspNetCore.Builder;
@@ -37,6 +36,7 @@ namespace Iso.Api
 
       services.AddApplicationInsightsTelemetry(Configuration);
 
+      services.AddResponseCompression();
       services.AddMvc().AddJsonOptions(options => { options.SerializerSettings.Formatting = Formatting.Indented; });
     }
 
@@ -85,13 +85,15 @@ namespace Iso.Api
       app.UseSwaggerUI(c =>
       {
         c.RoutePrefix = "api-docs";
-        c.SwaggerEndpoint($"/swagger/{Version}/swagger.json", $"{Title} {Version.ToUpper(CultureInfo.InvariantCulture)}");
+        c.SwaggerEndpoint($"/swagger/{Version}/swagger.json",
+          $"{Title} {Version.ToUpper(CultureInfo.InvariantCulture)}");
       });
 
       app.UseApiVersionResponse();
 
       app.UseDefaultFiles();
       app.UseStaticFiles();
+      app.UseResponseCompression();
       app.UseMvc();
     }
   }

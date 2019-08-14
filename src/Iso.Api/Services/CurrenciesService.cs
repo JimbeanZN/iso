@@ -11,7 +11,7 @@ namespace Iso.Api.Services
   internal class CurrenciesService : BaseService<IsoCurrency>
   {
     private readonly IEnumerable<IsoCountry> _countries;
-    
+
     public CurrenciesService(IEnumerable<IsoCurrency> currencies, IEnumerable<IsoCountry> countries) : base(currencies)
     {
       _countries = countries;

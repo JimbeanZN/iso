@@ -1,10 +1,8 @@
-using System.Linq;
 using System.Threading.Tasks;
 using Iso.Api.Controllers;
 using Iso.Api.Models;
 using Iso.Api.Services;
 using NSubstitute;
-using NSubstitute.ReceivedExtensions;
 using NUnit.Framework;
 
 namespace Iso.Api.Tests

@@ -12,7 +12,7 @@ namespace Iso.Api.Models
       IsoAlpha3Code = isoAlpha3Code;
       IsoNumericCode = isoNumericCode;
     }
-    
+
     public string Name { get; }
 
     [AbsoluteLength(3)] public string IsoAlpha3Code { get; }
